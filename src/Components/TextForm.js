@@ -7,27 +7,29 @@ export default function TextForm(props) {
     // console.log("Uppercase was clicked");
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("Converted to upperCase", "success");
     // console.log("Text changed to " + newText);
   };
 
   const handleLoClick = () => {
     const newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("Converted to lowerCase", "success");
   };
 
   const handleClearClick = () => {
     const newText = "";
     setText(newText);
+    props.showAlert("Text Cleared", "success");
   };
 
   const handleEmailClick = () => {
-    const newText = " akansh@gmail.com";
-    setText(newText);
-  };
-
-  const handleOnChange = (event) => {
-    // console.log(text + " Text Changed");
-    setText(event.target.value);
+    // const newText = " akansh@gmail.com";
+    // const extractEmails = (text) => {
+    //   return text.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi);
+    // };
+    // setText(extractEmails);
+    props.showAlert("Email Extracted !!", "success");
   };
 
   /// COPY TEXT TO CLIPBOARD
@@ -37,6 +39,12 @@ export default function TextForm(props) {
     text.select(); //select all text
     text.setSelectionRange(0, 9999);
     navigator.clipboard.writeText(text.value);
+    props.showAlert("Text Copied to Clipboard !!", "success");
+  };
+
+  const handleOnChange = (event) => {
+    // console.log(text + " Text Changed");
+    setText(event.target.value);
   };
 
   return (
